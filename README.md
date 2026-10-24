@@ -1,10 +1,14 @@
 # Real-Time Device Tracker 🌍
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Render_Cloud-brightgreen?style=for-the-badge&logo=render)](https://realtime-tracker-mnfs.onrender.com/)
+[![Swagger Docs](https://img.shields.io/badge/Swagger_UI-API_Docs-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://realtime-tracker-mnfs.onrender.com/api-docs)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
 [![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io)
-[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](/api-docs)
 [![Leaflet](https://img.shields.io/badge/Leaflet.js-Interactive_Maps-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
+
+> 🚀 **Live Application:** [realtime-tracker-mnfs.onrender.com](https://realtime-tracker-mnfs.onrender.com/)  
+> 📖 **Interactive Swagger UI:** [realtime-tracker-mnfs.onrender.com/api-docs](https://realtime-tracker-mnfs.onrender.com/api-docs)
 
 A high-performance real-time tracking application capable of receiving, processing, and broadcasting live geolocation telemetry to multiple connected clients simultaneously using WebSockets and Leaflet.js.
 
@@ -23,8 +27,8 @@ A high-performance real-time tracking application capable of receiving, processi
 
 ## 📖 API Documentation & Swagger UI
 The application includes interactive OpenAPI 3.0 documentation:
-- **Interactive Swagger UI:** Visit `/api-docs` (e.g., `https://<your-render-url>/api-docs` or `http://localhost:3000/api-docs`)
-- **Raw OpenAPI Spec:** Available at `/swagger.json`
+- **Interactive Swagger UI:** [realtime-tracker-mnfs.onrender.com/api-docs](https://realtime-tracker-mnfs.onrender.com/api-docs)
+- **Raw OpenAPI Spec:** [realtime-tracker-mnfs.onrender.com/swagger.json](https://realtime-tracker-mnfs.onrender.com/swagger.json)
 - **Health Check:** `GET /api/health`
 - **Active Tracker Sessions:** `GET /api/active-users`
 
