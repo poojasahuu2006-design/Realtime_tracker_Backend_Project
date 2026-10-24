@@ -1,6 +1,12 @@
 # Real-Time Device Tracker 🌍
 
-A full-stack tracking application capable of receiving, processing, and broadcasting live geolocation data to multiple connected clients simultaneously using WebSockets.
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
+[![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io)
+[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](/api-docs)
+[![Leaflet](https://img.shields.io/badge/Leaflet.js-Interactive_Maps-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
+
+A high-performance real-time tracking application capable of receiving, processing, and broadcasting live geolocation telemetry to multiple connected clients simultaneously using WebSockets and Leaflet.js.
 
 ## 🌟 Key Features
 - **Live Location Sync:** Uses the browser's Geolocation API to track movement in real-time.
