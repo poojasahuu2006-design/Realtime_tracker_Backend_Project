@@ -20,7 +20,22 @@ io.on("connection", function (socket) {
     activeSockets.add(socket.id);
 
     socket.on("send-location", function (data) {
-        io.emit("receive-location", { id: socket.id, ...data });
+        if (!data || typeof data.latitude !== "number" || typeof data.longitude !== "number") {
+            return;
+        }
+
+        // Sanitize username and limit length to prevent XSS injection
+        const cleanName = (typeof data.name === "string" ? data.name : "Anonymous")
+            .replace(/[<>'"&]/g, "")
+            .trim()
+            .slice(0, 30) || "Anonymous";
+
+        io.emit("receive-location", { 
+            id: socket.id, 
+            latitude: data.latitude,
+            longitude: data.longitude,
+            name: cleanName
+        });
     });
 
     socket.on("disconnect", function () {
