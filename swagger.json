@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Real-Time Device Tracker API",
+    "description": "High-performance WebSocket & REST API for live GPS geolocation streaming, Leaflet.js interactive map visualization, and real-time multi-client tracking.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Pooja Sahu",
+      "url": "https://github.com/poojasahuu2006-design",
+      "email": "poojasahuu2006@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Current Server (Local or Cloud)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "General",
+      "description": "Core application endpoints"
+    },
+    {
+      "name": "Metrics & Health",
+      "description": "System health and active session telemetry"
+    },
+    {
+      "name": "WebSockets",
+      "description": "Real-time Socket.IO bidirectional event documentation"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["General"],
+        "summary": "Render Tracker Web Interface",
+        "description": "Serves the responsive HTML5/EJS frontend with interactive Leaflet.js map and real-time geolocation streaming client.",
+        "responses": {
+          "200": {
+            "description": "Interactive tracker page rendered successfully",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": ["Metrics & Health"],
+        "summary": "Service Health Check",
+        "description": "Returns operational status, uptime, and server timestamp. Ideal for Render/cloud automated health checks.",
+        "responses": {
+          "200": {
+            "description": "Service is healthy and operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                },
+                "example": {
+                  "status": "healthy",
+                  "uptime": 124.5,
+                  "timestamp": "2026-10-24T15:25:00.000Z",
+                  "activeConnections": 3
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/active-users": {
+      "get": {
+        "tags": ["Metrics & Health"],
+        "summary": "Get Active Connected Devices",
+        "description": "Retrieves the total count of currently connected devices streaming location over WebSockets.",
+        "responses": {
+          "200": {
+            "description": "Active connection summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActiveUsersResponse"
+                },
+                "example": {
+                  "activeCount": 2,
+                  "socketIds": ["e8a1_xY92...", "b4k2_pL01..."]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ws-docs": {
+      "get": {
+        "tags": ["WebSockets"],
+        "summary": "Socket.IO Event Specifications",
+        "description": "Detailed schema of all real-time events handled and broadcasted by the Socket.IO server engine.",
+        "responses": {
+          "200": {
+            "description": "Socket event documentation and payload schemas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebSocketDocumentation"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "healthy"
+          },
+          "uptime": {
+            "type": "number",
+            "description": "Uptime in seconds",
+            "example": 320.12
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "activeConnections": {
+            "type": "integer",
+            "example": 2
+          }
+        }
+      },
+      "ActiveUsersResponse": {
+        "type": "object",
+        "properties": {
+          "activeCount": {
+            "type": "integer",
+            "example": 3
+          },
+          "socketIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WebSocketDocumentation": {
+        "type": "object",
+        "properties": {
+          "protocol": {
+            "type": "string",
+            "example": "Socket.IO v4"
+          },
+          "clientEvents": {
+            "type": "object",
+            "properties": {
+              "send-location": {
+                "type": "object",
+                "description": "Emitted by browser when GPS location changes",
+                "properties": {
+                  "latitude": { "type": "number", "example": 19.0760 },
+                  "longitude": { "type": "number", "example": 72.8777 },
+                  "name": { "type": "string", "example": "Pooja" }
+                }
+              },
+              "stop-tracking": {
+                "type": "object",
+                "description": "Emitted when user manually disables location tracking"
+              }
+            }
+          },
+          "serverEvents": {
+            "type": "object",
+            "properties": {
+              "receive-location": {
+                "type": "object",
+                "description": "Broadcasted to all connected clients with position and device ID",
+                "properties": {
+                  "id": { "type": "string", "example": "socket_id_abc" },
+                  "latitude": { "type": "number", "example": 19.0760 },
+                  "longitude": { "type": "number", "example": 72.8777 },
+                  "name": { "type": "string", "example": "Pooja" }
+                }
+              },
+              "user-disconnected": {
+                "type": "string",
+                "description": "Broadcasted when a client disconnects to remove their map marker",
+                "example": "socket_id_abc"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
